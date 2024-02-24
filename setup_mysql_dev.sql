@@ -1,5 +1,5 @@
--- Set ALL privileges on the database `hbnb_dev_db` to the `hbnb_dev` user.
--- Set SELECT privileges on the database `performance_schema` to the `hbnb_dev` user.
+-- Setting all privileges on the database `hbnb_dev_db` to the user with name `hbnb_dev`.
+-- Setting SELECT privileges on the database `performance_schema` to user `hbnb_dev`.
 
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 DROP USER IF EXISTS 'hbnb_dev'@'localhost';
