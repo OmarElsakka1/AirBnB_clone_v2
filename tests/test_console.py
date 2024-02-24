@@ -108,40 +108,40 @@ class TestHBNBCommand(unittest.TestCase):
         """Testing create command."""
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create User")
-            us = w.getvalue().strip()
+            user = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create State")
-            st = w.getvalue().strip()
+            state = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create Place")
-            pl = w.getvalue().strip()
+            place = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create City")
-            ct = w.getvalue().strip()
+            city = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create Review")
-            rv = w.getvalue().strip()
+            review = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("create Amenity")
-            am = w.getvalue().strip()
+            amenity = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all User")
-            self.assertIn(us, w.getvalue())
+            self.assertIn(user, w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all State")
-            self.assertIn(st, w.getvalue())
+            self.assertIn(state, w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all Place")
-            self.assertIn(pl, w.getvalue())
+            self.assertIn(place, w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all City")
-            self.assertIn(ct, w.getvalue())
+            self.assertIn(city, w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all Review")
-            self.assertIn(rv, w.getvalue())
+            self.assertIn(review, w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all Amenity")
-            self.assertIn(am, w.getvalue())
+            self.assertIn(amenity, w.getvalue())
 
     @unittest.skipIf(type(models.storage) == DBStorage, "Testing DBStorage")
     def test_create_kwargs(self):
@@ -150,11 +150,11 @@ class TestHBNBCommand(unittest.TestCase):
             call = ('create Place city_id="0001" name="My_house" '
                     'number_rooms=4 latitude=37.77 longitude=a')
             self.HBNB.onecmd(call)
-            p = w.getvalue().strip()
+            place = w.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all Place")
             out = w.getvalue()
-            self.assertIn(p, out)
+            self.assertIn(place, out)
             self.assertIn("'city_id': '0001'", out)
             self.assertIn("'name': 'My house'", out)
             self.assertIn("'number_rooms': 4", out)
@@ -230,8 +230,8 @@ class TestHBNBCommand(unittest.TestCase):
                 "** no instance found **\n", w.getvalue())
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("all User")
-            obj = w.getvalue()
-        my_id = obj[obj.find('(')+1:obj.find(')')]
+            objec = w.getvalue()
+        my_id = objec[objec.find('(')+1:objec.find(')')]
         with patch("sys.stdout", new=StringIO()) as w:
             self.HBNB.onecmd("update User " + my_id)
             self.assertEqual(
@@ -300,8 +300,8 @@ class TestHBNBCommand(unittest.TestCase):
             self.HBNB.onecmd("create User")
         with patch('sys.stdout', new=StringIO()) as w:
             self.HBNB.onecmd("all User")
-            obj = w.getvalue()
-        my_id = obj[obj.find('(')+1:obj.find(')')]
+            objec = w.getvalue()
+        my_id = objec[objec.find('(')+1:objec.find(')')]
         with patch('sys.stdout', new=StringIO()) as w:
             self.HBNB.onecmd("User.update(" + my_id + ")")
             self.assertEqual(
